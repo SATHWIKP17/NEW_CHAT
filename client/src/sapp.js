@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 // import { useEffect } from "react";
-import { io } from "socket.io-client";
+import { io } from "socket.io-client"; 
 import './App.css';
 import {useNavigate} from 'react-router-dom';
 const socket = io("https://new-chat-2bnm.onrender.com");
