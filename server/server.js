@@ -16,17 +16,24 @@ app.use(cors({
 app.use(express.json());
 app.use(express.static(path.join(__dirname,"../client/build")));
 app.use(express.urlencoded({extended:true}));
-io.on("connection",(socket)=>{
-    console.log("Connected");
-    socket.on("romsg",(room)=>{
-        console.log(room);
-        socket.on("msg",(data)=>{
-            console.log(data);
-            socket.to(room).emit("msgg",data);
-        })
+io.on("connection", (socket) => {
+    console.log("🟢 A user connected");
+
+    socket.on("romsg", (room) => {
+        socket.join(room);
+        console.log(`Joined room: ${room}`);
     });
 
-})
+    socket.on("msg", (data) => {
+        console.log("Message received:", data);
+        const { room, ...rest } = data;
+        socket.to(room).emit("msgg", rest); // send to others in room
+    });
+
+    socket.on("disconnect", () => {
+        console.log("🔴 A user disconnected");
+    });
+});
 app.post("/",(req,res)=>{
     
 });
