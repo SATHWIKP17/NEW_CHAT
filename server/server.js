@@ -33,6 +33,7 @@ app.post("/",(req,res)=>{
 // app.get("*",(req,res)=>{
 //     res.sendFile(__dirname,"../client/build","index.html");
 // })
-server.listen(3009,"localhost",()=>{
+const PORT=process.env.PORT|10000
+server.listen(PORT,"0.0.0.0",()=>{
     console.log("Success");
 });
