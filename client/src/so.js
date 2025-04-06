@@ -18,7 +18,8 @@ function Soc(){
         socket.emit("romsg",rom);
         socket.on("msgg",(data)=>{
             setRmsg((prev)=>[...prev,data]);
-        socket.off("msgg");
+        return (()=>{
+            socket.off("msgg");
         })
     },[rom]);
     function on(e){
