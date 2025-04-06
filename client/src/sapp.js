@@ -19,6 +19,7 @@ function Input() {
     }
     return (
         <>
+        <div className="App1">
             <div className="odiv">
                 <div className="idiv">
                     <form className="f1" onSubmit={sub}method="POST">
@@ -30,6 +31,7 @@ function Input() {
                     </form>
                 </div>
             </div>
+        </div>
         </>
     )
 }
