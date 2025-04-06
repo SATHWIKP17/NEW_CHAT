@@ -17,7 +17,7 @@ function Soc(){
     useEffect(()=>{
         socket.emit("romsg",rom);
         socket.on("msgg",(data)=>{
-            setRmsg((prev)=>[...prev,data]});
+            setRmsg((prev)=>[...prev,data])});
         return ()=>{
             socket.off("msgg");
         }
