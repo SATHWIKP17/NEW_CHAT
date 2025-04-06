@@ -4,7 +4,7 @@ import { useState } from "react";
 import { io } from "socket.io-client";
 import './App.css';
 import {useNavigate} from 'react-router-dom';
-const socket = io("http://localhost:3009/");
+const socket = io("https://new-chat-2bnm.onrender.com");
 function Input() {
     const [room, setRoom] = useState("");
     const nav=useNavigate();
