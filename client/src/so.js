@@ -17,10 +17,10 @@ function Soc(){
     useEffect(()=>{
         socket.emit("romsg",rom);
         socket.on("msgg",(data)=>{
-            setRmsg((prev)=>[...prev,data]);
-        return (()=>{
+            setRmsg((prev)=>[...prev,data]});
+        return ()=>{
             socket.off("msgg");
-        })
+        }
     },[rom]);
     function on(e){
         e.preventDefault();
