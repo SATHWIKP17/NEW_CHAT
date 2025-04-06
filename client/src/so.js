@@ -24,7 +24,7 @@ function Soc(){
     },[rom]);
     function on(e){
         e.preventDefault();
-        const tt={text:text,time:new Date()};
+        const tt={tex:text,time:new Date()};
         socket.emit("msg",tt);
         setMsg((prev)=>[...prev,tt]);
         setTmsg((prev)=>[...prev,tt]);
@@ -40,7 +40,7 @@ function Soc(){
                 <header className="hh"><h1 className="hd">Let's Chat</h1></header>
                 <br/>
                 {sorted.map((i,index)=>(
-                    <div className={tmsg.includes(i)?"hh2":"hhhh"}><div className={tmsg.includes(i)?"hh3":"hhhh1"}>{i.text}<footer className="fff"><small><sub>{new Date(i.time).toLocaleTimeString()}</sub></small></footer></div></div>))}
+                    <div className={tmsg.includes(i)?"hh2":"hhhh"}><div className={tmsg.includes(i)?"hh3":"hhhh1"}>{i.tex}<footer className="fff"><small><sub>{new Date(i.time).toLocaleTimeString()}</sub></small></footer></div></div>))}
                 <div className="iii">
                     <input className="iiiii" type="text" name="input" onChange={oon}/>
                     <button className="bb" type="submit" onClick={on}>🚀</button>
