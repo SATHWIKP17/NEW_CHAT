@@ -2,7 +2,7 @@ import React from 'react';
 import {useState,useEffect} from 'react';
 import {io} from 'socket.io-client';
 import {useLocation} from 'react-router-dom';
-const socket=io("http://localhost:3009");
+const socket=io("https://new-chat-2bnm.onrender.com");
 function Soc(){
     const locate=useLocation();
     const rom=locate.state;
