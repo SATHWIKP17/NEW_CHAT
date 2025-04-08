@@ -25,9 +25,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("msg", (data) => {
-        console.log("Message received:", data);
-        const { room, ...rest } = data;
-        socket.to(room).emit("msgg", rest); // send to others in room
+        socket.to(room).emit("msgg",data);
     });
 
     socket.on("disconnect", () => {
