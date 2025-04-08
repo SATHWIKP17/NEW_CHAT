@@ -19,13 +19,12 @@ app.use(express.urlencoded({extended:true}));
 io.on("connection", (socket) => {
     console.log("🟢 A user connected");
 
-    socket.on("romsg", (room) => {
+    socket.on("romsg", (ro) => {
+        let room=ro.rom;
         socket.join(room);
-        console.log(`Joined room: ${room}`);
-    });
-
     socket.on("msg", (data) => {
         socket.to(room).emit("msgg",data);
+    });
     });
 
     socket.on("disconnect", () => {
