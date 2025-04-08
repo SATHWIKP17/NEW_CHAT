@@ -41,8 +41,9 @@ body, html, #root, .App {
   }
 }
 .App1{
-  padding-left:500px;
-  padding-top:150px;
+ display:grid;
+ place-content:center;
+ justify-content:center;
 }
 .odiv{
   display:flex;
