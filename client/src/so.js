@@ -22,7 +22,7 @@ function Soc(){
             socket.off("msgg");
             socket.off("romsg");
         }
-    },[rom]);
+    },[]);
     function on(e){
         e.preventDefault();
         const tt={tex:text,time:new Date()};
