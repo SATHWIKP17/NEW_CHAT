@@ -20,6 +20,7 @@ function Soc(){
             setRmsg((prev)=>[...prev,data])});
         return ()=>{
             socket.off("msgg");
+            socket.off("romsg");
         }
     },[rom]);
     function on(e){
