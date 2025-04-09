@@ -35,7 +35,7 @@ app.post("/",(req,res)=>{
     
 });
 app.get("*",(req,res)=>{
-    res.sendFile(__dirname,"../client/build","index.html");
+    res.sendFile(express.static(path.join(__dirname,"../client/build")));
 });
 const PORT=process.env.PORT|10000
 server.listen(PORT,"0.0.0.0",()=>{
