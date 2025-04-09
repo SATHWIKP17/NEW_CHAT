@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Input/>}/>
         <Route path="/sock" element={<Soc/>}/>
-        <Route path="/cam" element={<Ff/>}>
+        <Route path="/cam" element={<Ff/>}/>
       </Routes>
     </div>
     </BrowserRouter>
