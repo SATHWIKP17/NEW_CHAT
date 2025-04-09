@@ -34,9 +34,9 @@ io.on("connection", (socket) => {
 app.post("/",(req,res)=>{
     
 });
-// app.get("*",(req,res)=>{
-//     res.sendFile(__dirname,"../client/build","index.html");
-// })
+app.get("*",(req,res)=>{
+    res.sendFile(__dirname,"../client/build","index.html");
+});
 const PORT=process.env.PORT|10000
 server.listen(PORT,"0.0.0.0",()=>{
     console.log("Success");
