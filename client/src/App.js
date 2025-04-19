@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Input from './sapp';
-import Soc from './so';
+import Sh from './so';
 import Ff from './cam';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Input/>}/>
-        <Route path="/sock" element={<Soc/>}/>
+        <Route path="/sock" element={<Sh/>}/>
         <Route path="/cam" element={<Ff/>}/>
       </Routes>
     </div>
