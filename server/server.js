@@ -19,8 +19,8 @@ app.use(express.urlencoded({extended:true}));
 io.on("connection", (socket) => {
     console.log("🟢 A user connected");
 
-    socket.on("romsg", (ro) => {
-        let room=ro.rom;
+    socket.on("room", (ro) => {
+        let room=ro.room;
         socket.join(room);
     socket.on("msg", (data) => {
         socket.to(room).emit("msgg",data);
