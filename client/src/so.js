@@ -1,7 +1,6 @@
 import React, { useState, useEffect ,useRef} from 'react';
 import { io } from 'socket.io-client';
 import './App.css';
-import {motion} from 'framer-motion';
 const socket = io('https://new-chat-1-0c5o.onrender.com',{ transports: ["websocket", "polling"] });
 function Sh() {
     const [mess, setMess] = useState([]);
