@@ -35,7 +35,7 @@ useEffect(() => {
       console.log("Notification permission:", permission);
     });
   }
-}, [rmsg]);
+}, []);
     function on(e){
         e.preventDefault();
         const tt={tex:text,time:new Date()};
