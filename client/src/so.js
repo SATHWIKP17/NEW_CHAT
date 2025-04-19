@@ -24,8 +24,8 @@ function Sh() {
     const [disp,setDisp]=useState(false);
     useEffect(() => {
         socket.emit('room',(room));
-        socket.on("msgg", (msg) => {
-            setR_mess((prev) => [...prev, { text: msg.text, time: new Date().toLocaleTimeString() }]);
+        socket.on("msgg", (data) => {
+            setR_mess((prev) => [...prev, data]);
         });
     
         return () => socket.off("msgg");
