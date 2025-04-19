@@ -24,7 +24,7 @@ function Sh() {
             setR_mess((prev) => [...prev, { text: msg.text, time: new Date().toLocaleTimeString() }]);
         });
     
-        return () => socket.off("rec_msg");
+        return () => socket.off("msgg");
     }, []); 
     // useEffect(() => {
     //     socket.on("mm", (msg) => {
