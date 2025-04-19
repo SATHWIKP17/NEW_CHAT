@@ -24,7 +24,7 @@ function Soc(){
         }
     },[]);
       const showNotification = (title, body) => {
-  if (Notification.permission === 'granted') {
+  if (Notification.permission === 'default') {
     new Notification(title, { body });
   }
 };
