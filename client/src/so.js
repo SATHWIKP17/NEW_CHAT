@@ -20,7 +20,7 @@ function Sh() {
     let curr=useRef(null);
     const [disp,setDisp]=useState(false);
     useEffect(() => {
-        socket.on("rec_msg", (msg) => {
+        socket.on("msgg", (msg) => {
             setR_mess((prev) => [...prev, { text: msg, time: new Date().toLocaleTimeString() }]);
         });
     
