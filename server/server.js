@@ -20,7 +20,7 @@ io.on("connection", (socket) => {
     console.log("🟢 A user connected");
 
     socket.on("room", (ro) => {
-        let room=ro.room;
+        let room=ro;
         socket.join(room);
     socket.on("msg", (data) => {
         socket.to(room).emit("msgg",data);
