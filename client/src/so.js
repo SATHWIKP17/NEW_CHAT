@@ -23,18 +23,19 @@ function Soc(){
             socket.off("romsg");
         }
     },[]);
-      useEffect(()=>{
-        if('Navigation' in window){
-            Notification.requestPermission().then(permission => {
-        console.log("Notification permission:", permission);
-      });
-        }
-        const showNotification = (title, body) => {
-    if (Notification.permission =='granted') {
-      new Notification(title, { body });
-    }
-  };
-    },rmsg);
+      const showNotification = (title, body) => {
+  if (Notification.permission === 'granted') {
+    new Notification(title, { body });
+  }
+};
+
+useEffect(() => {
+  if ('Notification' in window) {
+    Notification.requestPermission().then(permission => {
+      console.log("Notification permission:", permission);
+    });
+  }
+}, [rmsg]);
     function on(e){
         e.preventDefault();
         const tt={tex:text,time:new Date()};
