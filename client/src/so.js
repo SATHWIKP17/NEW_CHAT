@@ -32,7 +32,7 @@ function Soc(){
 useEffect(() => {
   if ('Notification' in window) {
     Notification.requestPermission().then(permission => {
-      console.log("Notification permission:", permission);
+      showNotification('title',rmsg[rmsg.length-1])
     });
   }
 }, [rmsg]);
