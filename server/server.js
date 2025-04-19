@@ -6,7 +6,7 @@ const {Server}=require('socket.io');
 const cors=require('cors');
 const server=http.createServer(app);
 const io=new Server(server,{cors:{
-    origin:['*'],
+    origin:['https://new-chat-1-0c5o.onrender.com/*'],
     methods:['POST','GET']
 }});
 app.use(cors({
