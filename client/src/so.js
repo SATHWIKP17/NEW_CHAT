@@ -1,8 +1,10 @@
-import React, { useState, useEffect ,useRef} from 'react';
+import React, { useState, useEffect ,useRef,useLocation} from 'react';
 import { io } from 'socket.io-client';
 import './App.css';
 const socket = io('https://new-chat-1-0c5o.onrender.com',{ transports: ["websocket", "polling"] });
 function Sh() {
+    const locate=useLocation();
+    const room=locate.state;
     const [mess, setMess] = useState([]);
     const [input, setInput] = useState("");
     const[sorted,setSorted]=useState([]);
@@ -20,11 +22,13 @@ function Sh() {
     let curr=useRef(null);
     const [disp,setDisp]=useState(false);
     useEffect(() => {
+        socket.emit('room',(room));
         socket.on("msgg", (msg) => {
             setR_mess((prev) => [...prev, { text: msg.text, time: new Date().toLocaleTimeString() }]);
         });
     
         return () => socket.off("msgg");
+        return()=>socket.off("room");
     }, []); 
     // useEffect(() => {
     //     socket.on("mm", (msg) => {
