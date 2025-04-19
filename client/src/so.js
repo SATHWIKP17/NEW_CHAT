@@ -1,53 +1,95 @@
-import React from 'react';
-import {useState,useEffect} from 'react';
-import {io} from 'socket.io-client';
-import {useLocation} from 'react-router-dom';
-const socket=io("https://new-chat-1-0c5o.onrender.com");
-function Soc(){
-    const locate=useLocation();
-    const rom=locate.state;
-    const [msg,setMsg]=useState([]);
-    const [text,setText]=useState("");
-    const [sorted,setSorted]=useState([]);
-    const[rmsg,setRmsg]=useState([]);
-    const [tmsg,setTmsg]=useState([]);
-    function oon(e){
-        setText(e.target.value);
-    }
-    useEffect(()=>{
-        socket.emit("romsg",rom);
-        socket.on("msgg",(data)=>{
-            setRmsg((prev)=>[...prev,data])});
-        return ()=>{
-            socket.off("msgg");
-            socket.off("romsg");
-        }
-    },[]);
+import React, { useState, useEffect ,useRef} from 'react';
+// import { io } from 'socket.io-client';
+import './App.css';
+import {motion} from 'framer-motion';
+// const socket = io('http://localhost:3012',{ transports: ["websocket", "polling"] });
+function Sh() {
+    const [mess, setMess] = useState([]);
+    const [input, setInput] = useState("");
+    const[sorted,setSorted]=useState([]);
+    const[r_mess,setR_mess]=useState([]);  
+    const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
     function on(e){
-        e.preventDefault();
-        const tt={tex:text,time:new Date()};
-        socket.emit("msg",tt);
-        setMsg((prev)=>[...prev,tt]);
-        setTmsg((prev)=>[...prev,tt]);
+        const nn={text:input,time:new Date().toLocaleTimeString()}
+        setMess((prev)=>[...prev,nn]);
+        setInput("");
+        // socket.emit("me",(nn));
+    }
+    function oon(e){
+        setInput(e.target.value);
+    }
+    let curr=useRef(null);
+    const [disp,setDisp]=useState(false);
+    // useEffect(() => {
+    //     socket.on("rec_msg", (msg) => {
+    //         setR_mess((prev) => [...prev, { text: msg, time: new Date().toLocaleTimeString() }]);
+    //     });
+    
+    //     return () => socket.off("rec_msg");
+    // }, []); 
+    // useEffect(() => {
+    //     socket.on("mm", (msg) => {
+    //         setMess((prev) => [...prev, msg]);   
+    //     });
+
+    //     // Cleanup to prevent multiple bindings
+    //     return () => socket.off("mm");
+    // }, []);
+    // const msgg = [
+    //     {
+    //         m: "Hello This is Sathwik,Hope You Remembered Me"
+    //     },
+    //     {
+    //         m: "Hello This is Vignesh,Hope You Remembered Me"
+    //     },
+    //     {
+    //         m: "Hello This is Lokesh,Hope You Remembered Me"
+    //     }
+    // ]
+    const [sel,setSel]=useState(false);
+    const [ic,setIc]=useState("")
+    const [t,setT]=useState("");
+    function handlemd(){
+        setT(new Date());
+    }
+    function handlec(i){
+        setIc(i);
+        setSel(true);
+    }
+    function handlemup(){
+        let time=t-Date.now();
+        if(t>=-3000){
+            setDisp(true);
+        }
     }
     useEffect(()=>{
-        const a=[...tmsg,...rmsg];
+        const a=[...mess,...r_mess];
         a.sort((a,b)=>new Date(a.time)-new Date(b.time));
         setSorted(a);
-    },[tmsg,rmsg]);
+    },[mess,r_mess]);
+    useEffect(()=>{
+        if('Notification' in window){
+            Notification.requestPermission().then(permission=>{
+                console.log('Notification',permission);
+            })
+        }
+        if(Notification.permission=='granted'){
+            new Notification('title',r_mess[r_mess.length-1]);
+        }
+    },[r_mess]);
     return(
         <>
-         <div className="dd">
+            <div className="dd">
                 <header className="hh"><h1 className="hd">Let's Chat</h1></header>
                 <br/>
                 {sorted.map((i,index)=>(
-                    <div className={tmsg.includes(i)?"hh2":"hhhh"}><div className={tmsg.includes(i)?"hh3":"hhhh1"}>{i.tex}<footer className="fff"><small><sub>{new Date(i.time).toLocaleTimeString()}</sub></small></footer></div></div>))}
+                    <div className={mess.includes(i)?"hh2":"hhhh"}><div className={mess.includes(i)?"hh3":"hhhh1"}>{i.text}<footer className="fff"><small><sub>{i.time}</sub></small></footer></div></div>))}
                 <div className="iii">
-                    <input className="iiiii" type="text" name="input" onChange={oon}/>
+                    <input className="iiiii" type="text" name="input" value={input} onChange={oon}/>
                     <button className="bb" type="submit" onClick={on}>🚀</button>
                 </div>
             </div>
-        </>
+        </> 
     )
 }
-export default Soc;
+export default Sh;
