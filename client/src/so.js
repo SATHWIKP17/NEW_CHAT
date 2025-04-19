@@ -23,18 +23,32 @@ function Soc(){
             socket.off("romsg");
         }
     },[]);
+      useEffect(()=>{
+        if('Navigation' in window){
+            Notification.requestPermission().then(permission => {
+        console.log("Notification permission:", permission);
+      });
+        }
+        const showNotification = (title, body) => {
+    if (Notification.permission === 'granted') {
+      new Notification(title, { body });
+    }
+  };
+    },rmsg);
     function on(e){
         e.preventDefault();
         const tt={tex:text,time:new Date()};
         socket.emit("msg",tt);
         setMsg((prev)=>[...prev,tt]);
         setTmsg((prev)=>[...prev,tt]);
+        showNotification('title',rmsg[rmsg.length-1);
     }
     useEffect(()=>{
         const a=[...tmsg,...rmsg];
         a.sort((a,b)=>new Date(a.time)-new Date(b.time));
         setSorted(a);
     },[tmsg,rmsg]);
+  
     return(
         <>
          <div className="dd">
