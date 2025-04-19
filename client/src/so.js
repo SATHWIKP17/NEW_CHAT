@@ -19,13 +19,13 @@ function Sh() {
     }
     let curr=useRef(null);
     const [disp,setDisp]=useState(false);
-    // useEffect(() => {
-    //     socket.on("rec_msg", (msg) => {
-    //         setR_mess((prev) => [...prev, { text: msg, time: new Date().toLocaleTimeString() }]);
-    //     });
+    useEffect(() => {
+        socket.on("rec_msg", (msg) => {
+            setR_mess((prev) => [...prev, { text: msg, time: new Date().toLocaleTimeString() }]);
+        });
     
-    //     return () => socket.off("rec_msg");
-    // }, []); 
+        return () => socket.off("rec_msg");
+    }, []); 
     // useEffect(() => {
     //     socket.on("mm", (msg) => {
     //         setMess((prev) => [...prev, msg]);   
