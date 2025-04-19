@@ -30,7 +30,7 @@ function Soc(){
       });
         }
         const showNotification = (title, body) => {
-    if (Notification.permission === 'granted') {
+    if (Notification.permission =='granted') {
       new Notification(title, { body });
     }
   };
@@ -41,7 +41,7 @@ function Soc(){
         socket.emit("msg",tt);
         setMsg((prev)=>[...prev,tt]);
         setTmsg((prev)=>[...prev,tt]);
-        showNotification('title',rmsg[rmsg.length-1);
+        showNotification('title',rmsg[rmsg.length-1]);
     }
     useEffect(()=>{
         const a=[...tmsg,...rmsg];
