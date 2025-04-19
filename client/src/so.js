@@ -12,7 +12,7 @@ function Sh() {
         const nn={text:input,time:new Date().toLocaleTimeString()}
         setMess((prev)=>[...prev,nn]);
         setInput("");
-        // socket.emit("me",(nn));
+        socket.emit("msg",(nn));
     }
     function oon(e){
         setInput(e.target.value);
