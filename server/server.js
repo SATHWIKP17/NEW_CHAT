@@ -5,14 +5,17 @@ const http=require('http');
 const {Server}=require('socket.io');
 const cors=require('cors');
 const server=http.createServer(app);
-const io=new Server(server,{cors:{
-    origin:['https://new-chat-1-0c5o.onrender.com/*'],
-    methods:['POST','GET']
-}});
 app.use(cors({
-    origin:['*'],
-    methods:['POST','GET']
-}))
+  origin: 'https://new-chat-1-0c5o.onrender.com', // your frontend origin
+  methods: ['GET', 'POST']
+}));
+
+const io = new Server(server, {
+  cors: {
+    origin: 'https://new-chat-1-0c5o.onrender.com',
+    methods: ['GET', 'POST']
+  }
+});
 app.use(express.json());
 app.use(express.static(path.join(__dirname,"../client/build")));
 app.use(express.urlencoded({extended:true}));
